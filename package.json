@@ -1,0 +1,26 @@
+{
+  "name": "messanger-webhook",
+  "version": "1.0.0",
+  "description": "connect to fb messenger",
+  "main": "index.js",
+  "scripts": {
+    "start": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siriocarino/messenger-webhook.git"
+  },
+  "keywords": [
+    "webHookMessanger"
+  ],
+  "author": "sirio.carino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siriocarino/messenger-webhook/issues"
+  },
+  "homepage": "https://github.com/siriocarino/messenger-webhook#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
