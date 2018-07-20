@@ -5,7 +5,10 @@ const
      express = require('express'),
      bodyParser = require('body-parser'),
      app = express().use(bodyParser.json()); // creates express http server
+     const cool = require('cool-ascii-faces')
 
+
+app.get('/', (req, res) => res.render('./index'))
 
 
 
