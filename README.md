@@ -7,4 +7,21 @@
 -   heroku login
 -  heroku create messenger-webhook-connect
 -  git push heroku master
+- create Procfile  // inside   web: node index.js
+
 -  heroku ps:scale web=1
+
+
+Try to re-add the remote url if have herror
+
+// Check for the current url 
+git remote -v
+
+// remove remote url
+git remote rm heroku
+
+// re-add the remote url
+git remote add heroku git@heroku.com:name.git
+
+
+
