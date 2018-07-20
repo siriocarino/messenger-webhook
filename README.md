@@ -4,4 +4,7 @@
 
 - DEPLOY APP WITH heroku
 -  install brew install heroku/brew/heroku 
-brew install heroku/brew/heroku
+-   heroku login
+-  heroku create messenger-webhook-connect
+-  git push heroku master
+-  heroku ps:scale web=1
