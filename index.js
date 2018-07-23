@@ -36,6 +36,8 @@ app.get('/webhook', function(req, res) {
             // Responds with '403 Forbidden' if verify tokens do not match
             res.sendStatus(403);
        }
+  }else {
+    res.status(200).send("PAGE"+1);
   }
 
 
@@ -61,8 +63,7 @@ app.post('/webhook', (req, res) => {
        // Returns a '200 OK' response to all requests
        res.status(200).send('EVENT_RECEIVED');
   } else {
-       // Returns a '404 Not Found' if event is not from a page subscription
-       res.sendStatus(404);
+ 
   }
 
 
