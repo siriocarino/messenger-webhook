@@ -10,10 +10,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => res.render('./index'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-app.get('/webhook', (req, res) => {
-  res.status(200).send('PAGE');
-}
 
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/webhook', function(req, res) {
+  res.status(200).send('PAGE');
+});
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {
 
