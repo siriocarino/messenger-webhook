@@ -37,5 +37,5 @@ git remote add heroku git@heroku.com:name.git
 LOG heroku:
 heroku logs --tail
 
-
+heroku local web
 npm install cool-ascii-faces //    propagate a local change to the application through to Heroku
