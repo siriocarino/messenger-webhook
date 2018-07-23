@@ -60,11 +60,8 @@ app.post('/webhook', (req, res) => {
             let webhook_event = entry.messaging[0];
 
             console.log(webhook_event);
-            JSON.stringify(webhook_event);
-            console.log(webhook_event);
-            console.log("webhook_event.npl.entities");
-
-            console.log(webhook_event.npl.entities);
+          
+            console.log(   JSON.stringify(webhook_event) );
 
        });
 
