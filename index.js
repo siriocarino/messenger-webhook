@@ -48,6 +48,7 @@ app.post('/webhook', (req, res) => {
 
   let body = req.body;
   console.log(body)
+  console.log(  JSON.stringify(req.body) );
 
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
@@ -60,9 +61,7 @@ app.post('/webhook', (req, res) => {
             let webhook_event = entry.messaging[0];
 
             console.log(webhook_event);
-          
-            console.log(   JSON.stringify(webhook_event) );
-
+            
        });
 
        // Returns a '200 OK' response to all requests
