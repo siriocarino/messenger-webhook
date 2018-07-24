@@ -47,8 +47,6 @@ app.get('/webhook', function(req, res) {
 app.post('/webhook', (req, res) => {
 
   let body = req.body;
-  console.log(body)
-  console.log(JSON.stringify(body))
 
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
