@@ -4,13 +4,15 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000
 const app = express();
+const request = require('request');
+
 
 app.use(bodyParser.json()); // creates express http server
 app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => res.render('./index'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-const  PAGE_ACCESS_TOKEN = "EAAcXxuMKq34BANNgve3GF0VK9xx8da9Ft9pSAuOVpZCYkcXi6d4AO3xu5XTxNscAvvCfVOIYybZCQy0K9RzxHiZAi2FKDFr63K4M5lKdjcyo8ENdLVm7EWYSJWni6iVeSFmvvLRAoG9dFXUhsZA4U4BjnqjcVdUEDIZB7CwCkJwZDZD"
+const PAGE_ACCESS_TOKEN = "EAAcXxuMKq34BANNgve3GF0VK9xx8da9Ft9pSAuOVpZCYkcXi6d4AO3xu5XTxNscAvvCfVOIYybZCQy0K9RzxHiZAi2FKDFr63K4M5lKdjcyo8ENdLVm7EWYSJWni6iVeSFmvvLRAoG9dFXUhsZA4U4BjnqjcVdUEDIZB7CwCkJwZDZD"
 
 
 // respond with "hello world" when a GET request is made to the homepage
