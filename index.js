@@ -31,7 +31,6 @@ app.get('/webhook', function(req, res) {
 
        // Checks the mode and token sent is correct
        if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-
             // Responds with the challenge token from the request
             console.log('WEBHOOK_VERIFIED');
             res.status(200).send(challenge);
@@ -74,7 +73,7 @@ app.post('/webhook', (req, res) => {
               handlePostback(sender_psid, webhook_event.postback);
             }
 
-            
+
        });
 
        // Returns a '200 OK' response to all requests
