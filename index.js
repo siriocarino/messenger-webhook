@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => res.render('./index'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-const PAGE_ACCESS_TOKEN = "EAAcXxuMKq34BANkRdEzb9w6LadZBURA5VyGtX6W4DSqDNO07sewIz2huLLm3VssUvDdncGRsUabYJSW68RrZB9UTqoneFapXbFWIxgCJwwtwKmiR44IcqAJpFodylpOcNJdqZAV9B5cCm8hTB0M6m3AiKAOY8wGRYXj3guBZBgZDZD"
+const PAGE_ACCESS_TOKEN = "EAAcXxuMKq34BAMbq6H2Ineb6OvVwsvcUbq8eQxreohKiUL2UH3ZBPZAx37QE8p11B3glemJwocZBJjLHHoZC2cAPMrX29Eh5WvTV4EfhiqzwbphNMaq7rLDiqDMFyPsysZBRGtSUgdWtK7T48EU4ThhpQImNSaOZATSZCpcufAPWAZDZD"
 
 
 // respond with "hello world" when a GET request is made to the homepage
