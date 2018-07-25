@@ -10,6 +10,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => res.render('./index'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
+const  PAGE_ACCESS_TOKEN = "EAAcXxuMKq34BANNgve3GF0VK9xx8da9Ft9pSAuOVpZCYkcXi6d4AO3xu5XTxNscAvvCfVOIYybZCQy0K9RzxHiZAi2FKDFr63K4M5lKdjcyo8ENdLVm7EWYSJWni6iVeSFmvvLRAoG9dFXUhsZA4U4BjnqjcVdUEDIZB7CwCkJwZDZD"
+
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/webhook', function(req, res) {
@@ -123,7 +125,6 @@ function handleMessage(sender_psid, received_message) {
   // Sends the response message
  callSendAPI(sender_psid, response);
 }
-
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
@@ -133,7 +134,6 @@ function callSendAPI(sender_psid, response) {
     "message": response
   }
 
-  const  PAGE_ACCESS_TOKEN = "EAAcXxuMKq34BANNgve3GF0VK9xx8da9Ft9pSAuOVpZCYkcXi6d4AO3xu5XTxNscAvvCfVOIYybZCQy0K9RzxHiZAi2FKDFr63K4M5lKdjcyo8ENdLVm7EWYSJWni6iVeSFmvvLRAoG9dFXUhsZA4U4BjnqjcVdUEDIZB7CwCkJwZDZD"
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
@@ -147,4 +147,45 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   });
+}
+var request = new Request('https://graph.facebook.com/v2.6/me/messages', {
+	method: 'POST', 
+	mode: 'cors', 
+  redirect: 'follow',
+  json:"request_body",
+  qs:{ "access_token": PAGE_ACCESS_TOKEN }
+});
+
+const checkStatus = response => {
+  if(response){
+    return response;
+  }else {
+    const error = new Error (response.statusText)
+    error.response = response;
+    throw error;
+  }
+
+}
+
+fetch(request)
+.then(checkStatus)
+.then( data =>  { console.log("message sent", data )} ).catch(function(error){
+  console.log("request Faild", error);
+})
+
+
+function handlePostback(sender_psid, received_postback) {
+  let response;
+
+  // Get the payload for the postback
+  let payload = received_postback.payload;
+
+  // Set the response based on the postback payload
+  if (payload === 'yes') {
+    response = { "text": "Thanks!" }
+  } else if (payload === 'no') {
+    response = { "text": "Oops, try sending another image." }
+  }
+  // Send the message to acknowledge the postback
+  callSendAPI(sender_psid, response);
 }
