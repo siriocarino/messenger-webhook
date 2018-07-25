@@ -125,6 +125,7 @@ function handleMessage(sender_psid, received_message) {
   // Sends the response message
  callSendAPI(sender_psid, response);
 }
+
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
@@ -134,45 +135,20 @@ function callSendAPI(sender_psid, response) {
     "message": response
   }
 
-//   // Send the HTTP request to the Messenger Platform
-//   request({
-//     "uri": "https://graph.facebook.com/v2.6/me/messages",
-//     "qs": { "access_token": PAGE_ACCESS_TOKEN },
-//     "method": "POST",
-//     "json": request_body
-//   }, (err, res, body) => {
-//     if (!err) {
-//       console.log('message sent!')
-//     } else {
-//       console.error("Unable to send message:" + err);
-//     }
-//   });
-// }
-var request = new Request('https://graph.facebook.com/v2.6/me/messages', {
-	method: 'POST', 
-	mode: 'cors', 
-  redirect: 'follow',
-  json: request_body,
-  qs:{ "access_token": PAGE_ACCESS_TOKEN }
-});
-
-const checkStatus = response => {
-  if(response){
-    return response;
-  }else {
-    const error = new Error (response.statusText)
-    error.response = response;
-    throw error;
-  }
-
+  // Send the HTTP request to the Messenger Platform
+  request({
+    "uri": "https://graph.facebook.com/v2.6/me/messages",
+    "qs": { "access_token": PAGE_ACCESS_TOKEN },
+    "method": "POST",
+    "json": request_body
+  }, (err, res, body) => {
+    if (!err) {
+      console.log('message sent!')
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  });
 }
-
-fetch(request)
-.then(checkStatus)
-.then( data =>  { console.log("message sent", data )} ).catch(function(error){
-  console.log("request Faild", error);
-})
-
 
 function handlePostback(sender_psid, received_postback) {
   let response;
