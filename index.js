@@ -3,16 +3,21 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000
-const app = express();
 const request = require('request');
 
-
+const app = express();
 app.use(bodyParser.json()); // creates express http server
 app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => res.render('./index'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 const PAGE_ACCESS_TOKEN = "EAAcXxuMKq34BAMbq6H2Ineb6OvVwsvcUbq8eQxreohKiUL2UH3ZBPZAx37QE8p11B3glemJwocZBJjLHHoZC2cAPMrX29Eh5WvTV4EfhiqzwbphNMaq7rLDiqDMFyPsysZBRGtSUgdWtK7T48EU4ThhpQImNSaOZATSZCpcufAPWAZDZD"
+
+
+
+app.get("/", function (req, res) {
+  res.send("Deployed!");
+});
 
 
 // respond with "hello world" when a GET request is made to the homepage
@@ -63,7 +68,7 @@ app.post('/webhook', (req, res) => {
             let webhook_event = entry.messaging[0];
 
             // Get the sender PSID
-            let sender_psid = webhook_event.sender.id;
+            let sender_psid = webhook_event.sender.id; // ID per singola Pagina (PSID)
             console.log('Sender PSID: ' + sender_psid);
           
             // Check if the event is a message or postback and
@@ -130,7 +135,7 @@ function handleMessage(sender_psid, received_message) {
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
-    "recipient": {
+    "recipient": { // imposta il destinatario del messaggio previsto. In questo caso, identifichiamo gli utenti mediante i loro PSID.
       "id": sender_psid
     },
     "message": response
@@ -138,7 +143,7 @@ function callSendAPI(sender_psid, response) {
 
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://graph.facebook.com/v2.6/me/messages",
+    "uri": "https://graph.facebook.com/v2.6/"+ sender_psid +"/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": request_body
